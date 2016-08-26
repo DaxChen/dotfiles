@@ -31,6 +31,38 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 NeoBundle 'terryma/vim-multiple-cursors'
 
+" auto complete
+NeoBundle 'Shougo/neocomplete.vim'
+let g:neocomplete#enable_at_startup = 1
+set backspace=indent,eol,start
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  " return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'ternjs/tern_for_vim'
+
 NeoBundle 'tomtom/tcomment_vim' " toggle line comment type 'gcc' or use <ctrl+_><ctrl+_>
 "NeoBundle 'tpope/vim-repeat', '7a6675f09'       " Enable . repeat for plugin operations (eg. gitgutter)
 "NeoBundle 'tpope/vim-surround', '42e9b46e'
@@ -180,6 +212,10 @@ set showcmd
 
 " reselect the text that was just pasted! leader + v
 nnoremap <leader>v V`]`
+
+" Show “invisible” characters
+set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set list
 
 " color theme
 " START MOLOKAI
