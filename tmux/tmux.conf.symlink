@@ -1,6 +1,12 @@
 # set -g default-command "login-shell"
-# tmux display things in 256 colors
-# set -g default-terminal "tmux-256color-italic"
+
+# let tmux show italic
+#########################
+# tmux display things in 256 colors (require tic xterm-256color-italic.terminfo)
+set -g default-terminal "tmux-256color-italic"
+#  enable terminal compability
+set-option -ga terminal-overrides ",tmux-256color-italic:Tc"
+
 
 set -g history-limit 20000
 
@@ -25,7 +31,7 @@ bind-key a send-prefix
 setw -g aggressive-resize on
 
 # make delay shorter
-# set -sg escape-time 0
+set -sg escape-time 0
 
 # tile all windows
 # unbind =
@@ -43,6 +49,20 @@ setw -g pane-base-index 1
 # set-option -g set-titles on
 # set-option -g set-titles-string "#T - #W"
 
+# Use vim keybindings in copy mode
+setw -g mode-keys vi
+# Setup 'v' to begin selection as in Vim
+bind-key -t vi-copy v begin-selection
+bind-key -t vi-copy 'C-v' rectangle-toggle # Begin rectangle selection in copy mode.
+# copy the selection to OSX clipboard
+bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
+# Update default binding of `Enter` to also use copy-pipe
+unbind -t vi-copy Enter
+bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
+
+setw -g mouse on
+setw -g monitor-activity on
+
 ######################
 #### Key Bindings ####
 ######################
@@ -58,13 +78,20 @@ bind | split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
 
 # synchronize all panes in a window
-# bind y setw synchronize-panes
+bind y setw synchronize-panes
 
 # pane movement shortcuts
 bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
+
+# Use Alt-vim keys without prefix key to switch panes (only my mac)
+bind -n è select-pane -L
+bind -n ê select-pane -D 
+bind -n ë select-pane -U
+bind -n ì select-pane -R
+
 # Use Alt-arrow keys without prefix key to switch panes
 bind -n M-Left select-pane -L
 bind -n M-Right select-pane -R
@@ -89,3 +116,28 @@ bind -r L resize-pane -R 4
 ##############################
 
 source ~/.dotfiles/tmux/theme.sh
+
+###########
+### TPM ###
+###########
+
+# List of plugins
+
+# tpm: tmux plugin manager
+set -g @plugin 'tmux-plugins/tpm'
+
+# sensible tmux configs everyone agrees
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# Persists tmux environment across system restarts.
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+# set -g @resurrect-capture-pane-contents 'on' # enable `Restoring pane contents`
+
+# auto-save tmux session (using tmux-resurrect)
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @continuum-restore 'on' # auto restore when tmux start
+set -g @continuum-save-interval '60' # auto save tmux every 60 minutes
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
+
