@@ -1,3 +1,5 @@
 .netrwhist
 
 config/nvim/plugged
+
+node_modules

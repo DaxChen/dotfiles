@@ -1,6 +1,9 @@
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'tpope/vim-sensible' " Defaults everyone can agree on
+" this is for vim, not neovim (run :CheckHealth said remove this)
+if !has('nvim')
+    Plug 'tpope/vim-sensible' " Defaults everyone can agree on
+endif
 
 
 " colorschemes
@@ -17,7 +20,7 @@ Plug 'altercation/vim-colors-solarized' " Precision colors for machines and peop
 " Plug 'zefei/vim-colortuner' " Adjust your vim colors using sliders
 
 
-" styling related
+" UI related
 """"""""""""""""""""""""""""
 Plug 'myusuf3/numbers.vim' " intelligently toggling line numbers
 " Plug 'bling/vim-bufferline' " super simple vim plugin to show the list of buffers in the command bar
@@ -34,6 +37,8 @@ Plug 'vim-airline/vim-airline-themes' " themes for vim-airline
     let g:airline#extensions#tabline#buffer_min_count = 2 " minimum number of buffers needed to show the tabline
     " let g:airline#extensions#tabline#show_buffers = 0 " do not show open buffers in tabline
     let g:airline#extensions#tabline#show_splits = 0
+Plug 'Yggdroot/indentLine' " display the indention levels with thin vertical lines
+" Plug 'nathanaelkane/vim-indent-guides' " visually displaying indent levels in code
 
 
 " utilities
@@ -49,11 +54,16 @@ Plug 'tpope/vim-commentary' " comment stuff out
 Plug 'tpope/vim-unimpaired' " mappings which are simply short normal mode aliases for commonly used ex commands
 Plug 'tpope/vim-surround' " mappings to easily delete, change and add such surroundings in pairs, such as quotes, parens, etc.
 " Plug 'benmills/vimux' " tmux integration for vim
+Plug 'romainl/vim-qf' " Tame the quickfix window
+    let g:qf_loclist_window_bottom=0
 
 " lint
 Plug 'benekastah/neomake' " neovim replacement for syntastic using neovim's job control functonality
+    let g:neomake_open_list = 2
+    let g:neomake_list_height = 3
 " Plug 'benjie/neomake-local-eslint.vim' " Prefer local eslint over global with neomake
 Plug 'jaawerth/nrun.vim' " (neomake-local-eslint.vim uses `npm bin` which is very slow) this uses native which and exec function
+    " setup eslint
     let g:neomake_javascript_enabled_makers = ['eslint']
     " when switching/opening a JS buffer, set neomake's eslint path, and enable it as a maker
     au BufEnter *.js let b:neomake_javascript_eslint_exe = nrun#Which('eslint')
@@ -72,6 +82,7 @@ Plug 'tommcdo/vim-exchange' " Easily swap two objects with `cx`, eg. 'cxiw' on f
     " Plug 'justinmk/vim-sneak' " The missing motion for Vim (eg. use 'sab' to go to the next 'ab'
 Plug 'vim-scripts/YankRing.vim' " history of yank registers. use <c-p>/<c-n> to change pasted value
 Plug 'dietsche/vim-lastplace' " Intelligently reopen files at your last edit position
+Plug 'tpope/vim-obsession' " start a session file with :Obsession
 
 " git
 Plug 'tpope/vim-fugitive' " amazing git wrapper for vim
@@ -98,19 +109,13 @@ Plug 'Valloric/YouCompleteMe' " code-completion engine
     let g:ycm_complete_in_strings = 1 " show auto-complete in strings
     let g:ycm_autoclose_preview_window_after_insertion = 1 " auto-close preview (top) window after leaving insert mode
     let g:ycm_filetype_blacklist = {} " use YCM with every file type
-    " to work with Ultisnips
-    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-    let g:SuperTabDefaultCompletionType = '<C-n>'
+Plug 'ervandew/supertab' " Perform all your vim insert mode completions with Tab
 Plug 'SirVer/ultisnips' " The ultimate snippet solution
     let g:UltiSnipsEditSplit="vertical" " make :UltiSnipsEdit to split window vertically
-    let g:UltiSnipsExpandTrigger = "<tab>" " better key bindings for UltiSnipsExpandTrigger
-    let g:UltiSnipsJumpForwardTrigger = "<tab>"
-    let g:UltiSnipsJumpBackwardTrigger = "<S-TAB>"
-Plug 'ervandew/supertab' " Perform all your vim insert mode completions with Tab
-    " Plug 'MarcWeber/vim-addon-mw-utils' " (snipmate depends on this) interpret a file by function and cache file automatically
-    " Plug 'tomtom/tlib_vim' " (snipmate depends on this) utility functions for vim
-    " Plug 'garbas/vim-snipmate' " snippet manager
+    let g:UltiSnipsExpandTrigger = "<C-e>" " key binding for Expand
+    " let g:UltiSnipsJumpForwardTrigger = "<tab>" " move to the next tabstop
+    " let g:UltiSnipsJumpBackwardTrigger = "<S-TAB>" " move to the previous tabstop
+Plug 'honza/vim-snippets' " some default snippets
 
 
 " specials
@@ -132,10 +137,10 @@ Plug 'mustache/vim-mustache-handlebars' " mustach support
 Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug', 'vim'] } " jade support
 
 " JavaScript
-" Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx', 'vue'] } " Yet Another JavaScript Syntax plugin
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx', 'vue'] } " Yet Another JavaScript Syntax plugin
 Plug 'mxw/vim-jsx', { 'for': ['jsx', 'javascript'] } " JSX support
-Plug 'gavocanov/vim-js-indent', { 'for': ['javascript', 'javascript.jsx', 'vue'] } " JavaScript indent support
+" Plug 'gavocanov/vim-js-indent', { 'for': ['javascript', 'javascript.jsx', 'vue'] } " JavaScript indent support
 Plug 'moll/vim-node', { 'for': 'javascript' } " node support
 Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx', 'vue'] } " ES6 and beyond syntax
 Plug 'ternjs/tern_for_vim' " Tern.js plugin for Vim
@@ -176,16 +181,3 @@ Plug 'timcharper/textile.vim', { 'for': 'textile' } " textile support
 
 call plug#end()
 
-" "===============================================================================
-" " OLD NEOBUNDLE PLUGINS
-" "===============================================================================
-"
-" "NeoBundle 'tpope/vim-obsession', '4ab72e07ec'   " start a session file with :Obsession
-"
-" " Ultisnips (private snippets are stored in this repo)
-" "NeoBundle 'UltiSnips', '3.0'
-"
-" " Colour schemes:
-"
-"
-" " Try later:

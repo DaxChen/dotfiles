@@ -39,6 +39,7 @@ augroup configgroup
     autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
 
     " auto lint on file open and save
-    autocmd! BufEnter,BufWritePost * Neomake
+    " autocmd! BufWritePost,BufEnter * Neomake " this causes problem with quickfix window (infinite looping)
+    autocmd! BufWritePost * Neomake
 augroup END
 " }}}
