@@ -37,7 +37,7 @@ Plug 'vim-airline/vim-airline-themes' " themes for vim-airline
     let g:airline#extensions#tabline#buffer_min_count = 2 " minimum number of buffers needed to show the tabline
     " let g:airline#extensions#tabline#show_buffers = 0 " do not show open buffers in tabline
     let g:airline#extensions#tabline#show_splits = 0
-Plug 'Yggdroot/indentLine' " display the indention levels with thin vertical lines
+" Plug 'Yggdroot/indentLine' " (this is very slow and laggy) display the indention levels with thin vertical lines
 " Plug 'nathanaelkane/vim-indent-guides' " visually displaying indent levels in code
 
 
@@ -59,7 +59,7 @@ Plug 'romainl/vim-qf' " Tame the quickfix window
 
 " lint
 Plug 'benekastah/neomake' " neovim replacement for syntastic using neovim's job control functonality
-    let g:neomake_open_list = 2
+    " let g:neomake_open_list = 2
     let g:neomake_list_height = 3
 " Plug 'benjie/neomake-local-eslint.vim' " Prefer local eslint over global with neomake
 Plug 'jaawerth/nrun.vim' " (neomake-local-eslint.vim uses `npm bin` which is very slow) this uses native which and exec function
@@ -104,18 +104,26 @@ Plug 'Valloric/YouCompleteMe' " code-completion engine
     " and compile YCM with the following command (in `/.dotfiles/config/nvim/plugged/YouCompleteMe`):
     " "./install.py --clang-completer --tern-completer --gocode-completer"
     " if you have everything installed, you can run "./install.py --all"
-    let g:ycm_min_num_of_chars_for_completion = 1 " number of chars before identifier-based completion triggers
+    " let g:ycm_min_num_of_chars_for_completion = 2 " number of chars before identifier-based completion triggers
     let g:ycm_complete_in_comments = 1 " show auto-complete when typing in comments
     let g:ycm_complete_in_strings = 1 " show auto-complete in strings
     let g:ycm_autoclose_preview_window_after_insertion = 1 " auto-close preview (top) window after leaving insert mode
     let g:ycm_filetype_blacklist = {} " use YCM with every file type
+    let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
+    let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+    let g:SuperTabDefaultCompletionType = '<C-n>'
 Plug 'ervandew/supertab' " Perform all your vim insert mode completions with Tab
 Plug 'SirVer/ultisnips' " The ultimate snippet solution
     let g:UltiSnipsEditSplit="vertical" " make :UltiSnipsEdit to split window vertically
-    let g:UltiSnipsExpandTrigger = "<C-e>" " key binding for Expand
-    " let g:UltiSnipsJumpForwardTrigger = "<tab>" " move to the next tabstop
-    " let g:UltiSnipsJumpBackwardTrigger = "<S-TAB>" " move to the previous tabstop
+    let g:UltiSnipsExpandTrigger = "<tab>" " key binding for Expand
+    let g:UltiSnipsJumpForwardTrigger = "<tab>" " move to the next tabstop
+    let g:UltiSnipsJumpBackwardTrigger = "<S-TAB>" " move to the previous tabstop
 Plug 'honza/vim-snippets' " some default snippets
+    let g:ultisnips_javascript = {
+      \ 'keyword-spacing': 'always',
+      \ 'semi': 'never',
+      \ 'space-before-function-paren': 'always',
+      \ }
 
 
 " specials
@@ -130,11 +138,11 @@ Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " focus tool. Good for pres
 """""""""""""""""""""""""""""
 " html / templates
 Plug 'tpope/vim-ragtag' " endings for html, xml, etc. - ehances surround, Use <C-x>/ to close last open html tag
-Plug 'gregsexton/MatchTag', { 'for': ['html', 'vim'] } " match tags in html, similar to paren support
-Plug 'mattn/emmet-vim', { 'for': ['html', 'vim'] } " emmet support for vim - easily create markdup wth CSS-like syntax
-Plug 'othree/html5.vim', { 'for': ['html', 'vim'] } " html5 support
+Plug 'gregsexton/MatchTag', { 'for': ['html', 'vue'] } " match tags in html, similar to paren support
+Plug 'mattn/emmet-vim', { 'for': ['html', 'vue'] } " emmet support for vim - easily create markdup wth CSS-like syntax
+Plug 'othree/html5.vim', { 'for': ['html', 'vue'] } " html5 support
 Plug 'mustache/vim-mustache-handlebars' " mustach support
-Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug', 'vim'] } " jade support
+Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug', 'vue'] } " jade support
 
 " JavaScript
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }

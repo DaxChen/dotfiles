@@ -10,7 +10,7 @@ set nocompatible
 set scrolloff=7
 
 " set the text width for automatic word wrapping
-set textwidth=120
+set textwidth=110
 
 " move swap files (file.txt~) out of the working directory
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
