@@ -1,0 +1,54 @@
+alias v='nvim'
+alias vi="vim"
+alias rm="rm -i"
+alias o="open ."
+#alias ls='ls -AF'
+#alias ll='ls -AFl'
+# alias so='source ~/.bash_profile'
+alias c='clear'
+alias q='exit'
+alias reload='source ~/.zshrc'
+alias dotfiles='cd ~/.dotfiles'
+#alias ..='cd ..'
+alias ssh="TERM=xterm-256color ssh"
+#alias pi='ssh pi@ddhome.no-ip.org'
+#alias nmlab="ssh dd@140.112.18.199"
+# alias clipo='cd ~/Clipo/web'
+
+# this is used with bash_it, to turn on and off version control checking
+alias vcon="export SCM_CHECK=true"
+alias vcoff="export SCM_CHECK=false"
+alias giton="export SCM_GIT_SHOW_DETAILS=true"
+alias gitoff="export SCM_GIT_SHOW_DETAILS=false"
+
+# to connect to aws ubuntu
+#alias sshaws='ssh -i ~/dd.pem ubuntu@ec2-52-69-123-92.ap-northeast-1.compute.amazonaws.com'
+alias sshaws='ssh -i ~/.ssh/dd_aws.pem ubuntu@54.67.15.0'
+alias sshhome='ssh -i ~/.ssh/dd_home.pem daxchen@114.35.97.114'
+
+# git
+eval "$(hub alias -s)"
+
+# tmux
+alias t='tmux'
+alias tn='tmux new -s'
+alias ta='tmux attach'
+
+# npm
+alias ns='npm start'
+alias ys='yarn start'
+alias lh3000='open http://localhost:3000'
+alias lh3030='open http://localhost:3030'
+alias lh4000='open http://localhost:4000'
+alias lh8000='open http://localhost:8000'
+alias lh8080='open http://localhost:8080'
+alias lh3=lh3000
+alias lh33=lh3030
+alias lh8=lh8000
+alias lh88=lh8080
+
+# npm global
+alias rm=trash # sindresorhus/trash-cli
+
+# pika
+alias pika='pikaptcha'
