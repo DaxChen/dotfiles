@@ -1,0 +1,16 @@
+{
+	"profiles": [
+		{
+			"name": "Dax Chen using Filco Ninja external keyboard with MBPR",
+			"selected": true,
+			"simple_modifications": {
+				"caps_lock": "left_control",
+				"left_command": "left_option",
+				"left_option": "left_command",
+				"right_command": "right_option",
+				"right_option": "right_command",
+				"application": "fn"
+			}
+		}
+	]
+}
