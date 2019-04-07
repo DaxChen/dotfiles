@@ -17,7 +17,7 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " python
-let g:python_host_prog = '/usr/local/bin/python'
+let g:python_host_prog = '/usr/local/opt/python/libexec/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 set wrap                    " turn on line wrapping

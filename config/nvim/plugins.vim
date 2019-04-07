@@ -61,12 +61,12 @@ Plug 'romainl/vim-qf' " Tame the quickfix window
 Plug 'benekastah/neomake' " neovim replacement for syntastic using neovim's job control functonality
     " let g:neomake_open_list = 2
     let g:neomake_list_height = 3
-" Plug 'benjie/neomake-local-eslint.vim' " Prefer local eslint over global with neomake
-Plug 'jaawerth/nrun.vim' " (neomake-local-eslint.vim uses `npm bin` which is very slow) this uses native which and exec function
-    " setup eslint
-    let g:neomake_javascript_enabled_makers = ['eslint']
-    " when switching/opening a JS buffer, set neomake's eslint path, and enable it as a maker
-    au BufEnter *.js let b:neomake_javascript_eslint_exe = nrun#Which('eslint')
+" " Plug 'benjie/neomake-local-eslint.vim' " Prefer local eslint over global with neomake
+" Plug 'jaawerth/nrun.vim' " (neomake-local-eslint.vim uses `npm bin` which is very slow) this uses native which and exec function
+"     " setup eslint
+"     let g:neomake_javascript_enabled_makers = ['eslint']
+"     " when switching/opening a JS buffer, set neomake's eslint path, and enable it as a maker
+"     au BufEnter *.js let b:neomake_javascript_eslint_exe = nrun#Which('eslint')
 
 Plug 'tpope/vim-repeat' " enables repeating other supported plugins with the . command
 Plug 'editorconfig/editorconfig-vim' " .editorconfig support
@@ -89,8 +89,10 @@ Plug 'tpope/vim-fugitive' " amazing git wrapper for vim
 Plug 'airblade/vim-gitgutter'  " show line git diff changes
     set updatetime=1000 " update gitgutter how many ms after you stop typing (readme recommends 250ms)
     let g:gitgutter_max_signs = 500  " hide gitgutter if signs more than how many (default value is 500)
-Plug 'jaxbot/github-issues.vim' " Github issue lookup, automatically populate the omnicomplete menu with issues on Github
+" Plug 'jaxbot/github-issues.vim' " Github issue lookup, automatically populate the omnicomplete menu with issues on Github
     " github-issues.vim requires python support (neovim: pip install --user neovim)
+
+Plug 'wakatime/vim-wakatime' " track time usage with wakatime
 
 
 " auto complete && snippets
