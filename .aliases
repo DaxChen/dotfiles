@@ -1,5 +1,6 @@
 alias v='nvim'
-alias vi="vim"
+alias vi="nvim"
+alias vim="nvim"
 alias rm="rm -i"
 alias o="open ."
 #alias ls='ls -AF'
@@ -14,6 +15,9 @@ alias ssh="TERM=xterm-256color ssh"
 #alias pi='ssh pi@ddhome.no-ip.org'
 #alias nmlab="ssh dd@140.112.18.199"
 # alias clipo='cd ~/Clipo/web'
+alias ags='ag --ignore-case --literal'
+
+alias weather='function _weather(){ curl "wttr.in/$1?m"; }; _weather'
 
 # this is used with bash_it, to turn on and off version control checking
 alias vcon="export SCM_CHECK=true"
@@ -36,6 +40,7 @@ alias ta='tmux attach'
 
 # npm
 alias ns='npm start'
+alias y='yarn'
 alias ys='yarn start'
 alias lh3000='open http://localhost:3000'
 alias lh3030='open http://localhost:3030'
@@ -52,3 +57,6 @@ alias rm=trash # sindresorhus/trash-cli
 
 # pika
 alias pika='pikaptcha'
+
+# find my ip!
+alias myip='printf "LAN IP: " ; ifconfig | awk '"'"'$1=="inet" && $2!="127.0.0.1"{print $2}'"'"' ; printf "WAN IP: " ; curl ipecho.net/plain ; printf "\n\n(づ｡◕‿‿◕｡)づ"'

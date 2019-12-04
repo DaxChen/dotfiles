@@ -1,0 +1,78 @@
+[user]
+	name = DaxChen
+	email = dd@daxchen.com
+
+# Enforce SSH
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+
+[merge]
+	tool = vimdiff
+[credential]
+	helper = osxkeychain
+[color]
+	ui = true
+	branch = auto
+	diff = auto
+	status = auto
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	commit = yellow bold
+	whitespace = red reverse
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[alias]
+# shows list of files that have a merge conflict
+	conflicts = diff --name-only --diff-filter=U
+	changes = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+# unstages a file. use like 'git unstage filename'
+	unstage = reset HEAD --
+
+# resets all uncomitted changes and files
+	abort = reset --hard HEAD
+
+# shows diff only for files staged to commit
+	new = diff --cached
+
+# shows only changes to files in current directory
+	here = status .
+
+# undo last commit
+	undo = reset HEAD~1
+
+# change last commit message
+	recommit = commit --amend
+
+[core]
+	excludesfile = /Users/dd/.gitignore_global
+	editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+
