@@ -17,6 +17,10 @@ echo "installing zsh-syntax-highlighting"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' ~/.zshrc
 
+# append source envs to .zshrc
+echo "source ~/.dotfiles/zsh-ubuntu.sh" >> ~/.zshrc
+source ~/.zshrc
+
 ###############
 # GIT
 ###############
@@ -31,3 +35,4 @@ git config --global user.email dd@daxchen.com
 curl -sLf https://spacevim.org/install.sh | bash
 rm -rf ~/.SpaceVim.d
 ln -svf ~/.dotfiles/SpaceVim.d ~/.SpaceVim.d
+
