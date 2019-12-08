@@ -28,6 +28,7 @@ source ~/.zshrc
 git config --global credential.helper store
 git config --global user.name DaxChen
 git config --global user.email dd@daxchen.com
+git config --global push.default simple
 
 #############
 # SpaceVim
