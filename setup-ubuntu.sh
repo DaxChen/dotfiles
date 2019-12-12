@@ -8,7 +8,7 @@ echo "your zsh version: $(zsh --version)"
 echo "changing shell to zsh using sudo"
 sudo chsh -s $(which zsh) $(whoami)
 echo "installing oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 ZSH_CUSTOM=~/.oh-my-zsh/custom
 echo "installing zsh-autosuggestions to $ZSH_CUSTOM/plugins"
