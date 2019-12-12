@@ -53,6 +53,6 @@ name = "denite"
 name = "lang#c"
 
 # custom plugins {{{
-[[custom_plugins]]
-name = 'wakatime/vim-wakatime'
+# [[custom_plugins]]
+# name = 'wakatime/vim-wakatime'
 # }}}
