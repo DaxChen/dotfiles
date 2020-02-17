@@ -37,3 +37,7 @@ curl -sLf https://spacevim.org/install.sh | bash
 rm -rf ~/.SpaceVim.d
 ln -svf ~/.dotfiles/SpaceVim.d ~/.SpaceVim.d
 
+###########
+# tmux
+###########
+ln -svf ~/.dotfiles/tmux/tmux-ubuntu.conf ~/.tmux.conf
