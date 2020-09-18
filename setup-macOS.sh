@@ -53,6 +53,11 @@ echo "source ~/.dotfiles/zsh-mac.sh" >> ~/.zshrc
 
 # brew install yarn
 
+###########
+# GIT
+###########
+git config --global credential.helper osxkeychain
+
 ############
 # tmux
 ############
