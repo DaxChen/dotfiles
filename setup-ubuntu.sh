@@ -66,3 +66,7 @@ sudo apt install -y vim-gtk3
 # tmux
 ###########
 ln -svf ~/.dotfiles/tmux/tmux-ubuntu.conf ~/.tmux.conf
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# Press prefix + I (capital i) to fetch the plugin.
+# use prefix + ctrl-s to save session in tmux-resurrect
+
